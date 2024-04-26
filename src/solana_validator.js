@@ -1,5 +1,5 @@
 const { addressType } = require('../src/crypto/utils');
-var base58 = require('./crypto/base58')
+var base58 = require('./crypto/base58');
 
 module.exports = {
   isValidAddress: function (address) {
@@ -10,10 +10,10 @@ module.exports = {
       return false;
     }
   },
-  getAddressType: function(address, currency, networkType) {
-      if (this.isValidAddress(address, currency, networkType)) {
-          return addressType.ADDRESS;
-      }
-      return undefined;
+  getAddressType: function (address, currency, networkType) {
+    if (this.isValidAddress(address, currency, networkType)) {
+      return addressType.ADDRESS;
+    }
+    return undefined;
   },
-}
+};

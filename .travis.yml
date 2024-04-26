@@ -3,6 +3,6 @@ addons:
   chrome: stable
 language: node_js
 node_js:
-  - "8"
-  - "10"
-  - "stable"
+  - '8'
+  - '10'
+  - 'stable'
