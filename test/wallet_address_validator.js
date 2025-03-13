@@ -1324,6 +1324,21 @@ describe('WAValidator.validate()', function () {
       valid('15FKUKXC6kwaXxJ1tXNywmFy4ZY6FoDFCnU3fMbibFdeqwGw', 'dot');
       valid('CxDDSH8gS7jecsxaRL9Txf8H5kqesLXAEAEgp76Yz632J9M', 'dot');
     });
+
+    it('should return true for correct NEAR addresses', function () {
+      valid(
+        '77ec2836daa0a077861ae0b51236205dc36f6eb3e1f89881a817a696a2c0a11b',
+        'near',
+      );
+      valid(
+        '7af5e895ff08617f0fc7bcded8dd754fa8816aad5af34af1b4c6599edea86685',
+        'near',
+      );
+      valid('game.hot.tg', 'near');
+      valid('tonykwon9x1595.tg', 'near');
+      valid('sweat-relayer.near', 'near');
+      valid('mytestapi.embr.playember_reserve.near', 'near');
+    });
   });
 
   describe('invalid results', function () {
@@ -1896,6 +1911,15 @@ describe('WAValidator.validate()', function () {
       invalid('pjsLDC1JFyrhm3ftC9Gs4QoyrkHKhZKtK7YqGTRFtTafgp', 'dot');
       invalid('15FKUKXC6kwaXxJ1tNywmFy4ZY6FoDFCnU3fMbibFdeqwGw', 'dot');
       invalid('CxDDSH8gS7jecsxaRL8Txf8H5kqesLXAEAEgp76Yz632J9M', 'dot');
+    });
+
+    it('should return false for incorrect NEAR addresses', function () {
+      invalid('a', 'near');
+      invalid('aB', 'near');
+      invalid('.game.hot.tg', 'near');
+      invalid('_tonykwon9x1595.tg', 'near');
+      invalid('sweat-relayer.near.', 'near');
+      invalid('mytestapi.embr.playember_reserve.near_', 'near');
     });
   });
 });
