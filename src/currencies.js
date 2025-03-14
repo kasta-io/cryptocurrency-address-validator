@@ -27,6 +27,7 @@ var SYSValidator = require('./sys_validator');
 var ZILValidator = require('./zil_validator');
 var NXTValidator = require('./nxt_validator');
 var SOLValidator = require('./solana_validator');
+var NEARValidator = require('./near_validator');
 
 // defines P2PKH, P2SH and bech32 address types for standard (prod) and testnet networks
 var CURRENCIES = [
@@ -1488,6 +1489,31 @@ var CURRENCIES = [
     name: 'Zilliqa',
     symbol: 'zil',
     validator: ZILValidator,
+  },
+  {
+    name: 'dogwifhat',
+    symbol: 'wif',
+    validator: SOLValidator,
+  },
+  {
+    name: 'PEPE',
+    symbol: 'pepe',
+    validator: ETHValidator,
+  },
+  {
+    name: 'SHIB',
+    symbol: 'shib',
+    validator: ETHValidator,
+  },
+  {
+    name: 'Avalanche',
+    symbol: 'avax',
+    validator: ETHValidator,
+  },
+  {
+    name: 'NEAR Protocol',
+    symbol: 'near',
+    validator: NEARValidator,
   },
 ];
 
