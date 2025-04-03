@@ -15539,6 +15539,16 @@ var CURRENCIES = [
     symbol: 'near',
     validator: NEARValidator,
   },
+  {
+    name: 'Bonk',
+    symbol: 'bonk',
+    validator: SOLValidator,
+  },
+  {
+    name: 'Floki',
+    symbol: 'floki',
+    validator: ETHValidator,
+  },
 ];
 
 module.exports = {
