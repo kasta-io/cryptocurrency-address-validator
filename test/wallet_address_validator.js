@@ -1339,6 +1339,13 @@ describe('WAValidator.validate()', function () {
       valid('sweat-relayer.near', 'near');
       valid('mytestapi.embr.playember_reserve.near', 'near');
     });
+
+    it('should return true for correct TON addresses', function () {
+      valid('Ef_a5A7jjemg9UIxm8qKDJDO6Ex1y0qIYKHv1y6JV2pf0Pc5', 'ton');
+      valid('UQD4uGNdB4a3f52mYOZf0x1nCmdd1DAvrLppL0a1cetTYCQx', 'ton');
+      valid('Ef9nzj6RBc4mQ6p3ng7mGJ7tp7MbzERhe7obkM9A0wnCCEcf', 'ton');
+      valid('EQCthnUiDu6Q_rzaJuD0Arp8AKsUq2C03-kMf5eFiKkSVZgW', 'ton');
+    });
   });
 
   describe('invalid results', function () {
@@ -1920,6 +1927,12 @@ describe('WAValidator.validate()', function () {
       invalid('_tonykwon9x1595.tg', 'near');
       invalid('sweat-relayer.near.', 'near');
       invalid('mytestapi.embr.playember_reserve.near_', 'near');
+    });
+
+    it('should return false for incorrect TON addresses', function () {
+      invalid('EQBvW8Z5huBkGc-bXd0lrfyXgQV7nHYtfKr5WAeXZqF5Em', 'ton'); // Too short
+      invalid('UQDiUy4FQr6N8E9D-oOvRySAc8B9bBRsHZc_gsC0VoB-BPTE123', 'ton'); // Too long
+      invalid('EQBvW8Z5huBkGc#bXd0lrfyXgQV7nHYtfKr5WAeXZqF5Em08', 'ton'); // Invalid character
     });
   });
 });

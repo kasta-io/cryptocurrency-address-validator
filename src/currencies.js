@@ -28,6 +28,7 @@ var ZILValidator = require('./zil_validator');
 var NXTValidator = require('./nxt_validator');
 var SOLValidator = require('./solana_validator');
 var NEARValidator = require('./near_validator');
+var TONValidator = require('./ton_validator');
 
 // defines P2PKH, P2SH and bech32 address types for standard (prod) and testnet networks
 var CURRENCIES = [
@@ -1524,6 +1525,11 @@ var CURRENCIES = [
     name: 'Floki',
     symbol: 'floki',
     validator: ETHValidator,
+  },
+  {
+    name: 'Ton',
+    symbol: 'ton',
+    validator: TONValidator,
   },
 ];
 
