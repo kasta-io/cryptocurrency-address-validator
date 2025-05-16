@@ -14052,6 +14052,7 @@ var ZILValidator = require('./zil_validator');
 var NXTValidator = require('./nxt_validator');
 var SOLValidator = require('./solana_validator');
 var NEARValidator = require('./near_validator');
+var TONValidator = require('./ton_validator');
 
 // defines P2PKH, P2SH and bech32 address types for standard (prod) and testnet networks
 var CURRENCIES = [
@@ -15549,6 +15550,11 @@ var CURRENCIES = [
     symbol: 'floki',
     validator: ETHValidator,
   },
+  {
+    name: 'Ton',
+    symbol: 'ton',
+    validator: TONValidator,
+  },
 ];
 
 module.exports = {
@@ -15576,7 +15582,7 @@ module.exports = {
 //     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
 //     .forEach(c => console.log(`"${c.name}","${c.symbol}",`));
 
-},{"./ada_validator":129,"./ae_validator":130,"./ardr_validator":131,"./atom_validator":132,"./bch_validator":133,"./binance_validator":134,"./bitcoin_validator":135,"./dot_validator":146,"./eos_validator":147,"./ethereum_validator":148,"./hbar_validator":149,"./icx_validator":150,"./iost_validator":151,"./lisk_validator":152,"./loki_validator":153,"./monero_validator":154,"./nano_validator":155,"./near_validator":156,"./nem_validator":157,"./nxt_validator":158,"./ripple_validator":159,"./siacoin_validator":160,"./solana_validator":161,"./steem_validator":162,"./stellar_validator":163,"./sys_validator":164,"./tezos_validator":165,"./tron_validator":166,"./zil_validator":168}],146:[function(require,module,exports){
+},{"./ada_validator":129,"./ae_validator":130,"./ardr_validator":131,"./atom_validator":132,"./bch_validator":133,"./binance_validator":134,"./bitcoin_validator":135,"./dot_validator":146,"./eos_validator":147,"./ethereum_validator":148,"./hbar_validator":149,"./icx_validator":150,"./iost_validator":151,"./lisk_validator":152,"./loki_validator":153,"./monero_validator":154,"./nano_validator":155,"./near_validator":156,"./nem_validator":157,"./nxt_validator":158,"./ripple_validator":159,"./siacoin_validator":160,"./solana_validator":161,"./steem_validator":162,"./stellar_validator":163,"./sys_validator":164,"./tezos_validator":165,"./ton_validator":166,"./tron_validator":167,"./zil_validator":169}],146:[function(require,module,exports){
 const cryptoUtils = require('./crypto/utils');
 
 // from https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)
@@ -16359,6 +16365,28 @@ module.exports = {
 
 },{"../src/crypto/utils":144,"./crypto/base58":137,"./crypto/utils":144}],166:[function(require,module,exports){
 const { addressType } = require('../src/crypto/utils');
+
+function isValidTONAddress(address) {
+  // TON addresses are base64 strings starting with 'EQ', 'UQ', or 'kQ'
+  // followed by 44 base64 characters
+  const tonAddressRegex = /^(-1|0):[0-9a-fA-F]{64}$|^[A-Za-z0-9_-]{48}$/;
+  return tonAddressRegex.test(address);
+}
+
+module.exports = {
+  isValidAddress: function (address) {
+    return isValidTONAddress(address);
+  },
+  getAddressType: function (address) {
+    if (this.isValidAddress(address)) {
+      return addressType.ADDRESS;
+    }
+    return undefined;
+  },
+};
+
+},{"../src/crypto/utils":144}],167:[function(require,module,exports){
+const { addressType } = require('../src/crypto/utils');
 var cryptoUtils = require('./crypto/utils');
 
 function decodeBase58Address(base58Sting) {
@@ -16431,7 +16459,7 @@ module.exports = {
   },
 };
 
-},{"../src/crypto/utils":144,"./crypto/utils":144}],167:[function(require,module,exports){
+},{"../src/crypto/utils":144,"./crypto/utils":144}],168:[function(require,module,exports){
 var currencies = require('./currencies');
 const { addressType } = require('../src/crypto/utils');
 
@@ -16474,7 +16502,7 @@ module.exports = {
   addressType,
 };
 
-},{"../src/crypto/utils":144,"./currencies":145}],168:[function(require,module,exports){
+},{"../src/crypto/utils":144,"./currencies":145}],169:[function(require,module,exports){
 const { addressType } = require('../src/crypto/utils');
 const { bech32 } = require('bech32');
 
@@ -16500,5 +16528,5 @@ module.exports = {
   },
 };
 
-},{"../src/crypto/utils":144,"bech32":3}]},{},[167])(167)
+},{"../src/crypto/utils":144,"bech32":3}]},{},[168])(168)
 });
