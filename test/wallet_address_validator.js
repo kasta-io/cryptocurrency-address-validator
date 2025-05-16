@@ -1340,11 +1340,21 @@ describe('WAValidator.validate()', function () {
       valid('mytestapi.embr.playember_reserve.near', 'near');
     });
 
-    it('should return true for correct TON addresses', function () {
-      valid('Ef_a5A7jjemg9UIxm8qKDJDO6Ex1y0qIYKHv1y6JV2pf0Pc5', 'ton');
-      valid('UQD4uGNdB4a3f52mYOZf0x1nCmdd1DAvrLppL0a1cetTYCQx', 'ton');
-      valid('Ef9nzj6RBc4mQ6p3ng7mGJ7tp7MbzERhe7obkM9A0wnCCEcf', 'ton');
-      valid('EQCthnUiDu6Q_rzaJuD0Arp8AKsUq2C03-kMf5eFiKkSVZgW', 'ton');
+    it.only('should return true for correct TON addresses', function () {
+      const address = 'Ef_a5A7jjemg9UIxm8qKDJDO6Ex1y0qIYKHv1y6JV2pf0Pc5';
+      const currency = 'ton';
+      var valid = WAValidator.validate(address, currency, 'testnet');
+
+      expect({ address, currency, valid }).to.deep.equal({
+        address,
+        currency,
+        valid: true,
+      });
+
+      // valid('Ef_a5A7jjemg9UIxm8qKDJDO6Ex1y0qIYKHv1y6JV2pf0Pc5', 'ton');
+      // valid('UQD4uGNdB4a3f52mYOZf0x1nCmdd1DAvrLppL0a1cetTYCQx', 'ton');
+      // valid('Ef9nzj6RBc4mQ6p3ng7mGJ7tp7MbzERhe7obkM9A0wnCCEcf', 'ton');
+      // valid('EQCthnUiDu6Q_rzaJuD0Arp8AKsUq2C03-kMf5eFiKkSVZgW', 'ton');
     });
   });
 

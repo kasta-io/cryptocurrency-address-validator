@@ -16471,6 +16471,8 @@ module.exports = {
       currencyNameOrSymbol || DEFAULT_CURRENCY_NAME,
     );
 
+    throw new Error('Aryella testing: ', currency, currency.validator);
+
     if (currency && currency.validator) {
       return currency.validator.isValidAddress(address, currency, networkType);
     }

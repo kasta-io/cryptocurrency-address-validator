@@ -29,6 +29,13 @@ describe('WAValidator.getCurrencies()', function () {
     expect(currency.symbol).to.equal('xrp');
   });
 
+  it('Should find a specific currency by name (ton)', function () {
+    var currency = WAValidator.findCurrency('Ton');
+    expect(currency).to.be.ok;
+    expect(currency.name).to.equal('Ton');
+    expect(currency.symbol).to.equal('ton');
+  });
+
   it('Should return null if currency is not found', function () {
     var currency = WAValidator.findCurrency('random');
     expect(currency).to.be.null;
